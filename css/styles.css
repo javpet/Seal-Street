@@ -1,0 +1,183 @@
+@font-face {
+  font-family: "Messapia";
+  src: url(messapia-bold.woff2);
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: translate(0, 24px) scale(0.95);
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+  }
+}
+
+@keyframes intro-box {
+  0% {
+    background-color: #ffffff;
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes grow-box {
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1
+  }
+
+  40% {
+    width: 360px;
+    height: 200px;
+  }
+
+  100% {
+    width: 100%;
+    height: 100%;
+    border-color: transparent;
+  }
+}
+
+body {
+  font-family: "Messapia", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 120px;
+}
+
+section {
+  padding: 120px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-image: linear-gradient(120deg, #97ebd6, #9aa6f9);
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+figure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 120px;
+  clip-path: polygon(0%, 0%, 100% 0%, 100% 100%, 0% 100%);
+  perspective: 800px;
+}
+
+figure div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+figure img {
+  max-height: 100%;
+}
+
+figcaption {
+  position: fixed;
+  width: 100%;
+  top: 70%;
+  left: 50%;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.alternate {
+  background-image: linear-gradient(30deg, #dc72ef, #fe0000);
+}
+
+div.intro {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  section.in-view img {
+    animation: show 2s 400ms both cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  }
+
+  div.intro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    pointer-events: none;
+    animation: intro-box 1s 1s both;
+  }
+
+  div.intro div.box {
+    width: 360px;
+    height: 200px;
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+    animation: grow-box 3s 2s both;
+  }
+
+  div.intro div.column {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 900px) {
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  main {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+  }
+
+  section {
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 48px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  figure {
+    padding: 64px;
+  }
+}
